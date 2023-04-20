@@ -3,10 +3,13 @@ package com.example.devinhousemodulo_2_projeto_avaliativo_2.config;
 import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.Consulta;
 import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.Endereco;
 import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.Paciente;
+import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.Usuario;
+import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.enums.EspecializacaoClinica;
 import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.enums.EstadoCivil;
 import com.example.devinhousemodulo_2_projeto_avaliativo_2.repositories.ConsultaRepository;
 import com.example.devinhousemodulo_2_projeto_avaliativo_2.repositories.EnderecoRepository;
 import com.example.devinhousemodulo_2_projeto_avaliativo_2.repositories.PacienteRepository;
+import com.example.devinhousemodulo_2_projeto_avaliativo_2.repositories.UsuarioRepository;
 import org.springframework.expression.ParseException;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +23,13 @@ public class DBService {
     private final EnderecoRepository enderecoRepository;
     private final PacienteRepository pacienteRepository;
     private final ConsultaRepository consultaRepository;
+    private final UsuarioRepository usuarioRepository;
 
-    public DBService(EnderecoRepository enderecoRepository, PacienteRepository pacienteRepository, ConsultaRepository consultaRepository) {
+    public DBService(EnderecoRepository enderecoRepository, PacienteRepository pacienteRepository, ConsultaRepository consultaRepository, UsuarioRepository usuarioRepository) {
         this.enderecoRepository = enderecoRepository;
         this.pacienteRepository = pacienteRepository;
         this.consultaRepository = consultaRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public void instantiateTestDatabase() throws ParseException {
@@ -51,23 +56,32 @@ public class DBService {
                 null, List.of("Cuidado cabeça"),
                 "9995859", "UNIMED", "9293", "09/09/2023", endereco_2);
 
+        Usuario usuario_1 = new Usuario("Médico 1", "Não Binario", LocalDate.of(2001,8,8), "3212321231", "3123-SP",
+                EstadoCivil.DIVORCIADO, "99984948", "medico_1@gmail.com", "Brasileira", "121212-es",
+                EspecializacaoClinica.CLINICO_GERAL, "12345678");
+
+        Usuario usuario_2 = new Usuario("Médico 2", "Feminino", LocalDate.of(2001,8,8), "3212321231", "3123-SP",
+                EstadoCivil.CASADO, "99984948", "medico_1@gmail.com", "Brasileira", "121212-es",
+                EspecializacaoClinica.GINECOLOGIA, "senhaforte123");
+
         Consulta consulta_1 = new Consulta("Consulta Rotina", LocalDateTime.now(), "Apenas consulta de rotina",
-                "nenhuma", "nenhuma", paciente_1);
+                "nenhuma", "nenhuma", paciente_1, usuario_1);
 
         Consulta consulta_2 = new Consulta("Consulta Retorno", LocalDateTime.now(), "Retorno da consulta de rotina",
-                "nenhuma", "nenhuma", paciente_1);
+                "nenhuma", "nenhuma", paciente_1, usuario_1);
 
         Consulta consulta_3 = new Consulta("Consulta Inicial", LocalDateTime.now(), "Consulta Inicial para averiguação de dor joelho",
-                "Dipirona", "3x ao dia", paciente_2);
+                "Dipirona", "3x ao dia", paciente_2, usuario_2);
 
         Consulta consulta_4 = new Consulta("Retorno de Consulta Inicial", LocalDateTime.now(), "Retorno da consulta Inicial",
-                "nenhuma", "diminuição de Execicios", paciente_2);
+                "nenhuma", "diminuição de Execicios", paciente_2, usuario_2);
 
 
 
         enderecoRepository.saveAll(List.of(endereco_1, endereco_2, endereco_3, endereco_4));
         pacienteRepository.saveAll(List.of(paciente_1, paciente_2));
-        consultaRepository.saveAll(List.of(consulta_1, consulta_2));
+        usuarioRepository.saveAll(List.of(usuario_1, usuario_2));
+        consultaRepository.saveAll(List.of(consulta_1, consulta_2, consulta_3, consulta_4));
 
     }
 }
