@@ -1,0 +1,567 @@
+{
+	"info": {
+		"_postman_id": "c553c86f-bb00-4fae-80b1-3fdc915e45ff",
+		"name": "DevInHouse Modulo 2 projeto 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14123212"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Criar Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Usuario Criado Por Post 1\",\r\n    \"genero\": \"Feminino\",\r\n    \"data_nascimento\": \"13/02/2023\",\r\n    \"cpf\": \"32132132\",\r\n    \"rg\": \"3123\",\r\n    \"estado_civil\": \"CASADO\",\r\n    \"telefone\": \"9993839\",\r\n    \"email\": \"paciente@paciente.com\",\r\n    \"naturalidade\": \"Brasileira\",\r\n   \"crm_uf\": \"ewqwew-ES\",\r\n    \"especializacao\": \"CLINICO_GERAL\",\r\n    \"senha\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/{{USUARIO}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{USUARIO}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Usuario Criado Por Post 1\",\r\n    \"genero\": \"Feminino\",\r\n    \"data_nascimento\": \"13/02/2023\",\r\n    \"cpf\": \"0000\",\r\n    \"rg\": \"3123\",\r\n    \"estado_civil\": \"CASADO\",\r\n    \"telefone\": \"9993839\",\r\n    \"email\": \"paciente@paciente.com\",\r\n    \"naturalidade\": \"Brasileira\",\r\n   \"crm_uf\": \"ewqwew-ES\",\r\n    \"especializacao\": \"CLINICO_GERAL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/{{USUARIO}}/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{USUARIO}}",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Senha Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"senha\": \"weewwwwwww\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/{{USUARIO}}/1/senha",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{USUARIO}}",
+								"1",
+								"senha"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.collectionVariables.set(\"USUARIO\", \"usuarios\");"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Pacientes",
+			"item": [
+				{
+					"name": "Listar Pacientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/{{PACIENTE}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{PACIENTE}}"
+							],
+							"query": [
+								{
+									"key": "nome_paciente",
+									"value": "ago",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Um Paciente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Paciente Criado Por Post 1\",\r\n    \"genero\": \"Feminino\",\r\n    \"data_nascimento\": \"13/02/2023\",\r\n    \"cpf\": \"32132132\",\r\n    \"rg\": \"3123\",\r\n    \"estado_civil\": \"CASADO\",\r\n    \"telefone\": \"9993839\",\r\n    \"email\": \"paciente@paciente.com\",\r\n    \"naturalidade\": \"Brasileira\",\r\n    \"alergias\": [],\r\n    \"cuidados\": [],\r\n    \"contato_emergencia\": \"99393333\",\r\n    \"convenio\": \"\",\r\n    \"numero_carteira_convenio\": null,\r\n    \"validade_carteira_convenio\": null,\r\n    \"endereco\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/{{PACIENTE}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{PACIENTE}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Paciente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Paciente Criado Por Post 1\",\r\n    \"genero\": \"Feminino\",\r\n    \"data_nascimento\": \"13/02/2023\",\r\n    \"cpf\": \"0000\",\r\n    \"rg\": \"3123\",\r\n    \"estado_civil\": \"CASADO\",\r\n    \"telefone\": \"9993839\",\r\n    \"email\": \"paciente@paciente.com\",\r\n    \"naturalidade\": \"Brasileira\",\r\n    \"alergias\": [],\r\n    \"cuidados\": [],\r\n    \"contato_emergencia\": \"99393333\",\r\n    \"convenio\": \"\",\r\n    \"numero_carteira_convenio\": null,\r\n    \"validade_carteira_convenio\": null,\r\n    \"endereco\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/{{PACIENTE}}/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{PACIENTE}}",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Procurar Por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/{{PACIENTE}}/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{PACIENTE}}",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Paciente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/{{PACIENTE}}/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{PACIENTE}}",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Consultas",
+			"item": [
+				{
+					"name": "Criar Consulta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"motivo_consulta\": \"Motivo POST 1\",\r\n    \"data_hora_consulta\": \"13/12/2022 15:30:55\",\r\n    \"descricao_problema\": \"Descrição POST 1\",\r\n    \"medicacao_receitada\": \"nenhuma\",\r\n    \"dosagen_precaucoes\": \"nenhuma\",\r\n    \"identificador_paciente\": \"1\",\r\n    \"identificador_usuario\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/{{CONSULTA}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{CONSULTA}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Consulta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"motivo_consulta\": \"Motivo POST 1\",\r\n    \"descricao_problema\": \"Descrição POST 1\",\r\n    \"medicacao_receitada\": \"dssdadsasd\",\r\n    \"dosagen_precaucoes\": \"sdasaddssdadsa\",\r\n    \"identificador_paciente\": \"1\",\r\n    \"identificador_usuario\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/{{CONSULTA}}/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{CONSULTA}}",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Consulta Por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/{{CONSULTA}}/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{CONSULTA}}",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleção De Consulta Por ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/{{CONSULTA}}/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{CONSULTA}}",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Exames",
+			"item": [
+				{
+					"name": "Criarção de Exame",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome_exame\": \"Ultrasonografia\",\r\n    \"data_hora_exame\": \"13/12/2022 15:30:55\",\r\n    \"tipo_exame\": \"qualquer\",\r\n    \"laboratorio\": \"laboratorio de analises clinicas\",\r\n    \"arquivo_exame\": \"https://docs.google.com/document/d/101UUYQBIvVog0CVIFefyPaJiVrZkW04-LZndx5fj1Qo\",\r\n    \"resultado_exame\": \"Nada entrontrado\",\r\n    \"identificador_paciente\": \"1\",\r\n    \"identificador_usuario\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/{{EXAME}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{EXAME}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Exame",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome_exame\": \"dshusdhuas\",\r\n    \"data_hora_exame\": \"13/12/2022 23:30:55\",\r\n    \"tipo_exame\": \"qualquer\",\r\n    \"laboratorio\": \"laboratorio de analises clinicas\",\r\n    \"arquivo_exame\": \"https://docs.google.com/document/d/101UUYQBIvVog0CVIFefyPaJiVrZkW04-LZndx5fj1Qo\",\r\n    \"resultado_exame\": \"Nada entrontrado\",\r\n    \"identificador_paciente\": \"2\",\r\n    \"identificador_usuario\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/{{EXAME}}/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{EXAME}}",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Procurar Exame Pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/{{EXAME}}/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{EXAME}}",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleção de Exame",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/{{EXAME}}/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{EXAME}}",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Estatisticas",
+			"item": [
+				{
+					"name": "Listar Estatisticas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/{{ESTATISTICA}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{ESTATISTICA}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Enderecos",
+			"item": [
+				{
+					"name": "Criar Endereço",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cep\": \"2922292\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"estado\": \"São Paulo\",\r\n   \"logradouro\": \"sem loug.\",\r\n    \"numero\": 23,\r\n    \"complemento\": \"sem compl\",\r\n    \"bairro\": \"BNH\",\r\n    \"ponto_referencia\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/{{ENDERECO}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{ENDERECO}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Endereços",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/{{ENDERECO}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{ENDERECO}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "localhost:8080/api"
+		},
+		{
+			"key": "PACIENTE",
+			"value": "pacientes"
+		},
+		{
+			"key": "USUARIO",
+			"value": "usuarios",
+			"type": "string"
+		},
+		{
+			"key": "CONSULTA",
+			"value": "consultas",
+			"type": "string"
+		},
+		{
+			"key": "EXAME",
+			"value": "exames",
+			"type": "string"
+		},
+		{
+			"key": "ESTATISTICA",
+			"value": "estatisticas",
+			"type": "string"
+		},
+		{
+			"key": "ENDERECO",
+			"value": "enderecos",
+			"type": "string"
+		}
+	]
+}
