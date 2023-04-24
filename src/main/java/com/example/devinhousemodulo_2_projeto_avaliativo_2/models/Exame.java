@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -40,4 +41,17 @@ public class Exame {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    @Builder
+    public Exame(String nome_exame, LocalDateTime data_hora_exame, String tipo_exame, String laboratorio,
+                 String arquivo_exame, String resultado_exame, Paciente paciente, Usuario usuario) {
+        this.nome_exame = nome_exame;
+        this.data_hora_exame = data_hora_exame;
+        this.tipo_exame = tipo_exame;
+        this.laboratorio = laboratorio;
+        this.arquivo_exame = arquivo_exame;
+        this.resultado_exame = resultado_exame;
+        this.paciente = paciente;
+        this.usuario = usuario;
+    }
 }

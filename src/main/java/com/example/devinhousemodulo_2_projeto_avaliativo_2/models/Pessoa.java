@@ -1,14 +1,11 @@
 package com.example.devinhousemodulo_2_projeto_avaliativo_2.models;
 
 import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.enums.EstadoCivil;
-import com.example.devinhousemodulo_2_projeto_avaliativo_2.validators.interfaces.EnumValidator;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -16,20 +13,27 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 public abstract class Pessoa {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     private String nome;
+    @NotBlank
     private String genero;
+    @NotNull
     private LocalDate data_nascimento;
+    @NotBlank
     private String cpf;
+    @NotBlank
     private String rg;
     @NotNull
     @Enumerated(EnumType.STRING)
     private EstadoCivil estado_civil;
+    @NotBlank
     private String telefone;
+    @NotBlank
     private String email;
+    @NotBlank
     private String naturalidade;
 
     public Pessoa(String nome, String genero, LocalDate data_nascimento, String cpf, String rg, EstadoCivil estado_civil, String telefone,

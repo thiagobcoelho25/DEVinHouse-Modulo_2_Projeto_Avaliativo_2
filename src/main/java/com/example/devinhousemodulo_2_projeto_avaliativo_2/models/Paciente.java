@@ -2,10 +2,10 @@ package com.example.devinhousemodulo_2_projeto_avaliativo_2.models;
 
 import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.enums.EstadoCivil;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,6 +22,7 @@ public class Paciente extends Pessoa {
     private List<String> alergias;
     @ElementCollection
     private List<String> cuidados;
+    @NotBlank
     private String contato_emergencia;
     private String convenio;
     private String numero_carteira_convenio;

@@ -1,15 +1,9 @@
 package com.example.devinhousemodulo_2_projeto_avaliativo_2.config;
 
-import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.Consulta;
-import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.Endereco;
-import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.Paciente;
-import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.Usuario;
+import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.*;
 import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.enums.EspecializacaoClinica;
 import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.enums.EstadoCivil;
-import com.example.devinhousemodulo_2_projeto_avaliativo_2.repositories.ConsultaRepository;
-import com.example.devinhousemodulo_2_projeto_avaliativo_2.repositories.EnderecoRepository;
-import com.example.devinhousemodulo_2_projeto_avaliativo_2.repositories.PacienteRepository;
-import com.example.devinhousemodulo_2_projeto_avaliativo_2.repositories.UsuarioRepository;
+import com.example.devinhousemodulo_2_projeto_avaliativo_2.repositories.*;
 import org.springframework.expression.ParseException;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +18,14 @@ public class DBService {
     private final PacienteRepository pacienteRepository;
     private final ConsultaRepository consultaRepository;
     private final UsuarioRepository usuarioRepository;
+    private final ExameRepository exameRepository;
 
-    public DBService(EnderecoRepository enderecoRepository, PacienteRepository pacienteRepository, ConsultaRepository consultaRepository, UsuarioRepository usuarioRepository) {
+    public DBService(EnderecoRepository enderecoRepository, PacienteRepository pacienteRepository, ConsultaRepository consultaRepository, UsuarioRepository usuarioRepository, ExameRepository exameRepository) {
         this.enderecoRepository = enderecoRepository;
         this.pacienteRepository = pacienteRepository;
         this.consultaRepository = consultaRepository;
         this.usuarioRepository = usuarioRepository;
+        this.exameRepository = exameRepository;
     }
 
     public void instantiateTestDatabase() throws ParseException {
@@ -76,12 +72,22 @@ public class DBService {
         Consulta consulta_4 = new Consulta("Retorno de Consulta Inicial", LocalDateTime.now(), "Retorno da consulta Inicial",
                 "nenhuma", "diminuição de Execicios", paciente_2, usuario_2);
 
+        Exame exame_1 = new Exame("Exame comum", LocalDateTime.now(), "Exame sangue", "Laboratorio Analises CLinicas",
+                "https://docs.google.com/document/d/101UUYQBIvVog0CVIFefyPaJiVrZkW04-LZndx5fj1Qo/edit", "tudo OK!",paciente_1, usuario_1);
 
+        Exame exame_2 = new Exame("Ultrasonografia", LocalDateTime.now(), "Ultrasonografia", "Laboratorio Analises CLinicas",
+                "https://docs.google.com/document/d/101UUYQBIvVog0CVIFefyPaJiVrZkW04-LZndx5fj1Qo/edit", "tudo OK!",paciente_2, usuario_1);
+
+        Exame exame_3 = new Exame("Exame rotina", LocalDateTime.now(), "Eletrocardiograma", "Laboratorio 2",
+                "https://docs.google.com/document/d/101UUYQBIvVog0CVIFefyPaJiVrZkW04-LZndx5fj1Qo/edit", "tudo OK!",paciente_1, usuario_2);
+
+        Exame exame_4 = new Exame("Exame comum", LocalDateTime.now(), "teste nervo cranial", "Laboratorio 3",
+                "https://docs.google.com/document/d/101UUYQBIvVog0CVIFefyPaJiVrZkW04-LZndx5fj1Qo/edit", "tudo OK!",paciente_1, usuario_2);
 
         enderecoRepository.saveAll(List.of(endereco_1, endereco_2, endereco_3, endereco_4));
         pacienteRepository.saveAll(List.of(paciente_1, paciente_2));
         usuarioRepository.saveAll(List.of(usuario_1, usuario_2));
         consultaRepository.saveAll(List.of(consulta_1, consulta_2, consulta_3, consulta_4));
-
+        exameRepository.saveAll(List.of(exame_1, exame_2, exame_3, exame_4));
     }
 }
