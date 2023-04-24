@@ -1,27 +1,26 @@
-package com.example.devinhousemodulo_2_projeto_avaliativo_2.models;
+package com.example.devinhousemodulo_2_projeto_avaliativo_2.dtos.requests;
 
-import jakarta.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Exame {
+public class ExameRequestDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @NotBlank
     private String nome_exame;
-    @NotNull
-    @Column(updatable = false)
+    @NotNull(message = "O padrão dever ser dd/MM/yyyy HH:mm:ss e não nulo!")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", shape = JsonFormat.Shape.STRING)
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime data_hora_exame;
     @NotBlank
     private String tipo_exame;
@@ -30,14 +29,9 @@ public class Exame {
     private String arquivo_exame;
     @NotBlank
     private String resultado_exame;
-
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "paciente_id")
-    private Paciente paciente;
-
+    private Long identificador_paciente;
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
+    private Long identificador_usuario;
+
 }

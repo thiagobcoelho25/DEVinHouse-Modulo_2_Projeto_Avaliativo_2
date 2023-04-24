@@ -3,25 +3,14 @@ package com.example.devinhousemodulo_2_projeto_avaliativo_2.exceptions;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.*;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.ServletWebRequest;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class Handler {
@@ -91,5 +80,12 @@ public class Handler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
     }
 
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<StandardError> entityNotFound(MethodArgumentTypeMismatchException e, HttpServletRequest request){
+        String errorString = "Parametro " + e.getValue() + " diferente do que se esperava " + e.getRequiredType();
+        StandardError err = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),request.getRequestURI(),
+                "Erro Tipo de parametro", errorString);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+    }
 
 }
