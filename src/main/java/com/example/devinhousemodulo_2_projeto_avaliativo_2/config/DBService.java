@@ -5,6 +5,7 @@ import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.enums.Especial
 import com.example.devinhousemodulo_2_projeto_avaliativo_2.models.enums.EstadoCivil;
 import com.example.devinhousemodulo_2_projeto_avaliativo_2.repositories.*;
 import org.springframework.expression.ParseException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,13 +20,15 @@ public class DBService {
     private final ConsultaRepository consultaRepository;
     private final UsuarioRepository usuarioRepository;
     private final ExameRepository exameRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public DBService(EnderecoRepository enderecoRepository, PacienteRepository pacienteRepository, ConsultaRepository consultaRepository, UsuarioRepository usuarioRepository, ExameRepository exameRepository) {
+    public DBService(EnderecoRepository enderecoRepository, PacienteRepository pacienteRepository, ConsultaRepository consultaRepository, UsuarioRepository usuarioRepository, ExameRepository exameRepository, PasswordEncoder passwordEncoder) {
         this.enderecoRepository = enderecoRepository;
         this.pacienteRepository = pacienteRepository;
         this.consultaRepository = consultaRepository;
         this.usuarioRepository = usuarioRepository;
         this.exameRepository = exameRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void instantiateTestDatabase() throws ParseException {
@@ -54,11 +57,11 @@ public class DBService {
 
         Usuario usuario_1 = new Usuario("Médico 1", "Não Binario", LocalDate.of(2001,8,8), "3212321231", "3123-SP",
                 EstadoCivil.DIVORCIADO, "99984948", "medico_1@gmail.com", "Brasileira", "121212-es",
-                EspecializacaoClinica.CLINICO_GERAL, "12345678");
+                EspecializacaoClinica.CLINICO_GERAL, passwordEncoder.encode("12345678"));
 
         Usuario usuario_2 = new Usuario("Médico 2", "Feminino", LocalDate.of(2001,8,8), "3212321231", "3123-SP",
                 EstadoCivil.CASADO, "99984948", "medico_1@gmail.com", "Brasileira", "121212-es",
-                EspecializacaoClinica.GINECOLOGIA, "senhaforte123");
+                EspecializacaoClinica.GINECOLOGIA, passwordEncoder.encode("senhaforte123"));
 
         Consulta consulta_1 = new Consulta("Consulta Rotina", LocalDateTime.now(), "Apenas consulta de rotina",
                 "nenhuma", "nenhuma", paciente_1, usuario_1);

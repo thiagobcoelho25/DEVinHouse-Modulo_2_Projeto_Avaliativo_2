@@ -32,6 +32,7 @@ public class PacienteService {
     }
 
     public List<PacienteResponseDTO> getAllPacientes(String nome_paciente){
+        nome_paciente = nome_paciente == null ? "" : nome_paciente;
         if(nome_paciente.isEmpty()){
             return mapper.map(pacienteRepository.findAll());
         } else {
