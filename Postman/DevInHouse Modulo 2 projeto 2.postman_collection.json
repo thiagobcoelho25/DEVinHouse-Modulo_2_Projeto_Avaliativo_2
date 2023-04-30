@@ -118,6 +118,16 @@
 				{
 					"name": "Listar Pacientes",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJTZWN1cml0eSBKV1QiLCJzdWIiOiJNw6lkaWNvIDEiLCJpZCI6MSwiZXhwIjoxNjgyODY3OTM3fQ.glaN4CKtSj3qv2LdKlKuk0ch_nUjWa7dJ8DpL1eY9xw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -501,6 +511,37 @@
 							],
 							"path": [
 								"{{ENDERECO}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autenticação",
+			"item": [
+				{
+					"name": "Gerar Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"Médico 1\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"login"
 							]
 						}
 					},
