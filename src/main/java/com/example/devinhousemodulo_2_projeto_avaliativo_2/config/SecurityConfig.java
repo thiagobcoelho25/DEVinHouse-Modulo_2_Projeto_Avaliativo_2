@@ -12,7 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
@@ -48,10 +47,7 @@ public class SecurityConfig {
 //                .csrf(csrf -> csrf
 //                        .ignoringRequestMatchers(antMatcher("/h2-console/**")))
 //                .build();
-        return http.csrf(csrf -> {
-                    csrf.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**"));
-                    csrf.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/login"));
-                })
+        return http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
